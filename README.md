@@ -60,7 +60,8 @@ torchvision            0.7.0
 
 
 ## License
-The code is released for research purposes only.
+* Released for research purposes only.
+* © Snap Inc. 2020
 
 
 ## <a name="CitingFewShotPatchBasedTraining"></a>Citing
