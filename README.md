@@ -14,7 +14,7 @@ _[O. Texler](https://ondrejtexler.github.io/), [D. Futschik](https://dcgi.fel.cv
 
 ## Run
 
-Download the [TESTING DATA](https://drive.google.com/file/d/1EscSNFg4ILpB7dxr-zYw_UdOILLmDlRj/view?usp=sharing), and unzip. 
+Download the [TESTING_DATA](https://drive.google.com/file/d/1EscSNFg4ILpB7dxr-zYw_UdOILLmDlRj/view?usp=sharing), and unzip. 
 The _train folder is expected to be next to the _gen folder. 
 
 To train the network, run the `train.py`. 
