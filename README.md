@@ -62,6 +62,10 @@ torch                  1.6.0
 torchvision            0.7.0
 ```
 
+## TODO
+* Add code for "interactive" usedcase as shown in the paper.
+* Remove the dependency on tensorflow.
+
 
 ## Credits
 * This project started when [Ondrej Texler](https://ondrejtexler.github.io/) was an intern at [Snap Inc.](https://www.snap.com/), and it was funded by [Snap Inc.](https://www.snap.com/) and [Czech Technical University in Prague](https://www.cvut.cz/en)
