@@ -11,6 +11,8 @@ _[O. Texler](https://ondrejtexler.github.io/), [D. Futschik](https://dcgi.fel.cv
 [[`Paper`](https://ondrejtexler.github.io/res/Texler20-SIG_patch-based_training_main.pdf)],
 [[`BiBTeX`](#CitingFewShotPatchBasedTraining)]
 
+![Teaser](doc/teaser.gif)
+
 
 ## Run
 
