@@ -31,7 +31,9 @@ if __name__ == "__main__":
     device = args.device
     print("device: " + device, flush=True)
 
-    generator = generator.to(device).type(torch.half)
+    generator = generator.to(device)
+    if device.lower() != "cpu":
+        generator = generator.type(torch.half)
     transform = build_transform()
     dataset = DatasetFullImages(args.data_root + "/" + args.dir_input, "ignore", "ignore", device,
                       dir_x1=args.data_root + "/" + args.dir_x1 if args.dir_x1 is not None else None,
@@ -46,7 +48,9 @@ if __name__ == "__main__":
         for i, batch in enumerate(imloader):
             print('Batch %d / %d' % (i, len(imloader)))
 
-            net_in = batch['pre'].to(args.device).type(torch.half)
+            net_in = batch['pre'].to(args.device)
+            if device.lower() != "cpu":
+                net_in = net_in.type(torch.half)
             net_out = generator(net_in)
 
             #image_space_in = to_image_space(batch['image'].cpu().data.numpy())
