@@ -1,1 +1,8 @@
 _tools/disflow/opencv-4.2.0/* linguist-vendored
+_tools/disflow/imageio.h linguist-vendored
+_tools/disflow/jzq.h linguist-vendored
+_tools/bilateralAdv/imageio.h linguist-vendored
+_tools/bilateralAdv/jzq.h linguist-vendored
+_tools/gauss/imageio.h linguist-vendored
+_tools/gauss/jzq.h linguist-vendored
+_tools/gauss/thinks/poisson_disk_sampling/poisson_disk_sampling.h linguist-vendored
