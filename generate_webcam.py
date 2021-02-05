@@ -25,6 +25,8 @@ if __name__ == "__main__":
     parser.add_argument("--outdir", help="output directory", required=True)
     parser.add_argument("--device", help="device", required=True)
     parser.add_argument("--resolution", type=int, nargs=2, metavar=('width', 'height'), default=(480, 640))
+    parser.add_argument("--show_original", type=int, default=0)
+    parser.add_argument("--resize", type=int, default=256)
     args = parser.parse_args()
 
     generator = (torch.load(args.checkpoint, map_location=lambda storage, loc: storage))
@@ -51,15 +53,16 @@ if __name__ == "__main__":
         y = int(test.shape[1] / 2)
         #print(x, y, res)
         test = test[x-res:x+res,y-res:y+res, :]
-        test2 = cv2.resize(test, (256, 256)) #test 480x640 to square - change if your webcam outputs a different resolution
+        test2 = cv2.resize(test, (args.resize, args.resize)) #test 480x640 to square - change if your webcam outputs a different resolution
         net_in2 = cvtransforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))(cvtransforms.ToTensor()(cv2.cvtColor(test2, cv2.COLOR_BGR2RGB))).to(args.device).unsqueeze(0)
         if device.lower() != "cpu":
             net_in2 = net_in2.type(torch.half)
         net_out = generator(net_in2)
         im = ((net_out.clamp(-1, 1) + 1) * 127.5).permute((0, 2, 3, 1)).cpu().data.numpy().astype(np.uint8)
-        im2 = cv2.resize(im[0], (2*res, 2*res))
-        cv2.imshow("image",np.concatenate((test,cv2.cvtColor(im2,cv2.COLOR_RGB2BGR)), axis=1))
-        #cv2.imshow("image", cv2.cvtColor(im[0],cv2.COLOR_RGB2BGR))
+        im2 = cv2.cvtColor(cv2.resize(im[0], (2*res, 2*res)), cv2.COLOR_RGB2BGR)
+        if args.show_original == 1:
+            im2 = np.concatenate((test, im2), axis=1)
+        cv2.imshow("image",im2)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             cap.release()
             cv2.destroyAllWindows()
