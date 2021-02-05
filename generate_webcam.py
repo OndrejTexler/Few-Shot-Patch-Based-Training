@@ -1,8 +1,7 @@
 import argparse
 import os
-#from custom_transforms import *
-from cvtorchvision import cvtransforms	#clone to the directory from https://github.com/hongchu098/opencv_torchvision_transforms
-#TODO get rid of cvtransforms
+from custom_transforms import *
+from PIL import Image
 import numpy as np
 import torch.utils.data
 import torch
@@ -22,15 +21,14 @@ if __name__ == "__main__":
     generator = (torch.load(args.checkpoint, map_location=lambda storage, loc: storage))
     generator.eval()
 
-    if not os.path.exists(args.outdir):
-        os.mkdir(args.outdir)
-
     device = args.device
     print("device: " + device, flush=True)
 
     generator = generator.to(device)
     if device.lower() != "cpu":
         generator = generator.type(torch.half)
+
+    transform = build_transform()
 
     cap = cv2.VideoCapture(0)
     width, height = args.resolution
@@ -49,8 +47,9 @@ if __name__ == "__main__":
         res = min(x, y)
         frame = frame[x-res:x+res, y-res:y+res, :]
         frame_resized = cv2.resize(frame, (args.resize, args.resize))
-        net_in = cvtransforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))(cvtransforms.ToTensor()(cv2.cvtColor(frame_resized, cv2.COLOR_BGR2RGB))).to(args.device).unsqueeze(0)
-        
+        frame_resized = Image.fromarray(cv2.cvtColor(frame_resized, cv2.COLOR_BGR2RGB)) #convert to PIL.Image for torchvision transforms
+        net_in = transform(frame_resized).to(args.device).unsqueeze(0)
+
         if device.lower() != "cpu":
             net_in = net_in.type(torch.half)
         net_out = generator(net_in)
