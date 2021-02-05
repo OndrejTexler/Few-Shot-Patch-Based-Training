@@ -54,10 +54,10 @@ generate.py --checkpoint "Zuzka2_train/logs_reference_P/model_00020.pth"
 	    --device "cuda:0"
 ```
 
-To generate the results on live webcam footage, run `generate_webcam.py`. 
+To generate the results on live webcam footage, run `generate_webcam.py`. To stop the generation, press q while the preview window is active.
 
 ```
-generate.py --checkpoint "Zuzka2_train/logs_reference_P/model_00020.pth" 
+generate_webcam.py --checkpoint "Zuzka2_train/logs_reference_P/model_00020.pth" 
 	    --data_root "Zuzka2_gen"
 	    --dir_input "input_filtered"
 	    --outdir "Zuzka2_gen/res_00020" 
