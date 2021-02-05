@@ -63,8 +63,10 @@ generate_webcam.py --checkpoint "Zuzka2_train/logs_reference_P/model_00020.pth"
 	    --outdir "Zuzka2_gen/res_00020" 
 	    --device "cuda:0"
 	    --resolution 1280 720
+	    --show_original 1
+	    --resize 256
 ```
-an optional resolution argument has been added, but the images will be always cropped to square
+An optional resolution argument has been added, but the images will be always cropped to square, and resized to the size of resize x resize for shorter delay.
 
 
 ## Installation
