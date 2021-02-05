@@ -54,6 +54,18 @@ generate.py --checkpoint "Zuzka2_train/logs_reference_P/model_00020.pth"
 	    --device "cuda:0"
 ```
 
+To generate the results on live webcam footage, run `generate_webcam.py`. 
+
+```
+generate.py --checkpoint "Zuzka2_train/logs_reference_P/model_00020.pth" 
+	    --data_root "Zuzka2_gen"
+	    --dir_input "input_filtered"
+	    --outdir "Zuzka2_gen/res_00020" 
+	    --device "cuda:0"
+	    --resolution 1280 720
+```
+an optional resolution argument has been added, but the images will be always cropped to square
+
 
 ## Installation
 Tested on Windows 10, `Python 3.7.8`, `CUDA 10.2`.
