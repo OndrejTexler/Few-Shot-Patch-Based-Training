@@ -187,10 +187,8 @@ to build `gauss.exe` yourself (on Linux/MacOS, get inspired by
 the build script, it should be really easy to build it).
 
 
-
-## Repo TODO List
-* Add code for "interactive" use-case as shown in the paper.
-* Remove the dependency on tensorflow.
+## Other Implementations 
+* Thank you, [Midas](https://github.com/rnwzd), for reimplementing this repo in PyTorch Lightning, see https://github.com/rnwzd/FSPBT-Image-Translation
 
 
 ## Credits
